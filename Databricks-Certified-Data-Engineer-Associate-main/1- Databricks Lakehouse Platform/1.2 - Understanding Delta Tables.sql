@@ -4,7 +4,15 @@
 
 -- COMMAND ----------
 
-USE CATALOG hive_metastore
+USE CATALOG company
+
+-- COMMAND ----------
+
+create schema unit
+
+-- COMMAND ----------
+
+use schema unit
 
 -- COMMAND ----------
 

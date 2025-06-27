@@ -4,7 +4,8 @@
 
 -- COMMAND ----------
 
-USE CATALOG hive_metastore;
+USE CATALOG company;
+USE SCHEMA unit;
 
 CREATE TABLE managed_default
   (width INT, length INT, height INT);
@@ -24,11 +25,11 @@ DESCRIBE EXTENDED managed_default
 
 -- COMMAND ----------
 
-CREATE TABLE external_default
-  (width INT, length INT, height INT)
-LOCATION 'dbfs:/mnt/demo/external_default';
+CREATE TABLE company.unit.external_default
+  (width INT, length INT, height INT);
+
   
-INSERT INTO external_default
+INSERT INTO company.unit.external_default
 VALUES (3 INT, 2 INT, 1 INT)
 
 -- COMMAND ----------
@@ -74,10 +75,10 @@ DESCRIBE DATABASE EXTENDED new_default
 
 USE new_default;
 
-CREATE TABLE managed_new_default
+CREATE TABLE company.unit.managed_new_default
   (width INT, length INT, height INT);
   
-INSERT INTO managed_new_default
+INSERT INTO company.unit.managed_new_default
 VALUES (3 INT, 2 INT, 1 INT);
 
 -----------------------------------
@@ -91,16 +92,16 @@ VALUES (3 INT, 2 INT, 1 INT);
 
 -- COMMAND ----------
 
-DESCRIBE EXTENDED managed_new_default
+DESCRIBE EXTENDED company.unit.managed_new_default
 
 -- COMMAND ----------
 
-DESCRIBE EXTENDED external_new_default
+DESCRIBE EXTENDED company.unit.external_new_default
 
 -- COMMAND ----------
 
-DROP TABLE managed_new_default;
-DROP TABLE external_new_default;
+DROP TABLE company.unit.managed_new_default;
+DROP TABLE company.unit.external_new_default;
 
 -- COMMAND ----------
 
@@ -126,6 +127,7 @@ DESCRIBE DATABASE EXTENDED custom
 
 -- COMMAND ----------
 
+CREATE SCHEMA CUSTOM;
 USE custom;
 
 CREATE TABLE managed_custom

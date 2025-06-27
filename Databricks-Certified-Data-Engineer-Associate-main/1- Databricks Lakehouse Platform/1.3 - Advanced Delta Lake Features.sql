@@ -5,40 +5,44 @@
 
 -- COMMAND ----------
 
-USE CATALOG hive_metastore
+USE CATALOG company
 
 -- COMMAND ----------
 
-DESCRIBE HISTORY employees
+show tables
+
+-- COMMAND ----------
+
+DESCRIBE HISTORY company.unit.employees
 
 -- COMMAND ----------
 
 SELECT * 
-FROM employees VERSION AS OF 4
+FROM company.unit.employees VERSION AS OF 4
 
 -- COMMAND ----------
 
-SELECT * FROM employees@v4
+SELECT * FROM company.unit.employees@v4
 
 -- COMMAND ----------
 
-DELETE FROM employees
+DELETE FROM company.unit.employees
 
 -- COMMAND ----------
 
-SELECT * FROM employees
+SELECT * FROM company.unit.employees
 
 -- COMMAND ----------
 
-RESTORE TABLE employees TO VERSION AS OF 5
+RESTORE TABLE company.unit.employees TO VERSION AS OF 5
 
 -- COMMAND ----------
 
-SELECT * FROM employees
+SELECT * FROM company.unit.employees
 
 -- COMMAND ----------
 
-DESCRIBE HISTORY employees
+DESCRIBE HISTORY company.unit.employees
 
 -- COMMAND ----------
 
@@ -48,20 +52,20 @@ DESCRIBE HISTORY employees
 
 -- COMMAND ----------
 
-DESCRIBE DETAIL employees
+DESCRIBE DETAIL company.unit.employees
 
 -- COMMAND ----------
 
-OPTIMIZE employees
+OPTIMIZE company.unit.employees
 ZORDER BY id
 
 -- COMMAND ----------
 
-DESCRIBE DETAIL employees
+DESCRIBE DETAIL company.unit.employees
 
 -- COMMAND ----------
 
-DESCRIBE HISTORY employees
+DESCRIBE HISTORY company.unit.employees
 
 -- COMMAND ----------
 
@@ -75,15 +79,11 @@ DESCRIBE HISTORY employees
 
 -- COMMAND ----------
 
-VACUUM employees
+VACUUM company.unit.employees
 
 -- COMMAND ----------
 
 -- MAGIC %fs ls 'dbfs:/user/hive/warehouse/employees'
-
--- COMMAND ----------
-
-VACUUM employees RETAIN 0 HOURS
 
 -- COMMAND ----------
 
@@ -91,7 +91,7 @@ SET spark.databricks.delta.retentionDurationCheck.enabled = false;
 
 -- COMMAND ----------
 
-VACUUM employees RETAIN 0 HOURS
+VACUUM company.unit.employees RETAIN 169 HOURS
 
 -- COMMAND ----------
 
@@ -99,7 +99,7 @@ VACUUM employees RETAIN 0 HOURS
 
 -- COMMAND ----------
 
-SELECT * FROM employees@v1
+SELECT * FROM company.unit.employees@v1
 
 -- COMMAND ----------
 
@@ -109,11 +109,11 @@ SELECT * FROM employees@v1
 
 -- COMMAND ----------
 
-DROP TABLE employees
+DROP TABLE company.unit.employees
 
 -- COMMAND ----------
 
-SELECT * FROM employees
+SELECT * FROM company.unit.employees
 
 -- COMMAND ----------
 
